@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofolheta - Acesso Exclusivo via Telegram</title>
+    <link rel="icon" href="assets/images/icon.png" type="images/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #2AABEE;
+            --secondary: #229ED9;
+            --accent: #FF6B6B;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --dark-blue: #1A365D;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Navbar */
+        .navbar {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 120px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section:before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            top: -150px;
+            right: -150px;
+        }
+        
+        .hero-section:after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            bottom: -100px;
+            left: -100px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Buttons */
+        .btn {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            box-shadow: 0 4px 15px rgba(42, 171, 238, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(42, 171, 238, 0.6);
+        }
+        
+        .btn-checkout {
+            background: linear-gradient(to right, #28a745, #20c997);
+            color: white;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        .btn-checkout:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.6);
+        }
+        
+        /* Cards */
+        .course-card {
+            transition: var(--transition);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        /* Pricing Card */
+        .pricing-card {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 2px solid #e9ecef;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+        
+        .pricing-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .price {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 3rem;
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+        }
+        
+        /* Section Titles */
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 800;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Benefits */
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .benefit-box {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .benefit-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-box:hover .benefit-icon {
+            transform: scale(1.1);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #0F1C2E 100%);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Modal */
+        .modal-content {
+            border-radius: 20px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        
+        /* Progress Scroll */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0 80px;
+                text-align: center;
+            }
+            
+            .display-4 {
+                font-size: 2.5rem;
+            }
+            
+            .benefit-box {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fab fa-telegram me-2"></i>Ofolheta
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#benefits">Vantagens</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#content">Conteúdo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Preço</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Depoimentos</a>
+                    </li>
+                </ul>
+                <a href="#pricing" class="btn btn-primary ms-lg-3">Comprar Agora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeInDown">Acesso Exclusivo ao Canal Premium</h1>
+                    <p class="lead mb-4 animate__animated animate__fadeIn animate__delay-1s">Conteúdo de alta qualidade, atualizado regularmente e suporte direto para acelerar seu aprendizado e resultados.</p>
+                    <div class="d-flex gap-2 flex-wrap animate__animated animate__fadeInUp animate__delay-1s">
+                        <a href="#pricing" class="btn btn-light btn-lg">Comprar Acesso</a>
+                        <a href="#content" class="btn btn-outline-light btn-lg">Ver Conteúdo</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block text-center animate__animated animate__fadeInRight animate__delay-1s">
+                    <i class="fab fa-telegram animate-float" style="font-size: 240px; opacity: 0.9;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center section-title">Vantagens Exclusivas</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="benefit-box">
+                        <div class="benefit-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h5>Conteúdo Exclusivo</h5>
+                        <p>Materiais que você não encontra em nenhum outro lugar, desenvolvidos por especialistas.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-box">
+                        <div class="benefit-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h5>Atualizações Constantes</h5>
+                        <p>Novo conteúdo adicionado regularmente para manter você sempre atualizado.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-box">
+                        <div class="benefit-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h5>Comunidade Ativa</h5>
+                        <p>Interaja com outros membros e tire suas dúvidas diretamente conosco.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-box">
+                        <div class="benefit-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h5>Acesso em Qualquer Lugar</h5>
+                        <p>Acesse pelo celular, tablet ou computador a qualquer momento.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-box">
+                        <div class="benefit-icon">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <h5>Acesso Vitalício</h5>
+                        <p>Uma única compra garante acesso permanente a todo conteúdo atual e futuro.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="benefit-box">
+                        <div class="benefit-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h5>Reembolso</h5>
+                        <p>Garantia de 7 Dias Sem Perguntas 
+                        Experimente o conteúdo por 7 dias e se não sentir que é para você, 
+                        devolvemos seu dinheiro integralmente sem burocracia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section id="content" class="py-5">
+        <div class="container py-5">
+            <h2 class="text-center section-title">Conteúdo Exclusivo</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <h4><i class="fas fa-graduation-cap text-primary me-2"></i> Biblioteca de Cursos </h4>
+                        <p>Tenha acesso a toda nossa biblioteca de cursos - de programação 
+                        a marketing, design e muito mais. Tudo em um único lugar!</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4><i class="fas fa-file-pdf text-primary me-2"></i> Materiais em PDF</h4>
+                        <p>Materiais complementares para download e estudo offline.</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4><i class="fas fa-project-diagram text-primary me-2"></i> Projetos Práticos</h4>
+                        <p>Exercícios e projetos para colocar em prática todo o conhecimento adquirido.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <h4><i class="fas fa-th-large text-primary me-2"></i> Diversidade de Conteúdos </h4>
+                        <p> Variedade de Conteúdos - tudo organizado e sempre disponível. </p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4><i class="fas fa-chart-line text-primary me-2"></i> Atualizações de Mercado</h4>
+                        <p>Fique por dentro das últimas tendências e novidades do mercado.</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4><i class="fas fa-clone text-primary me-2"></i> Conteúdo Multiformato </h4>
+                        <p> Aprendizado para Todos os Estilos - conteúdos em diversos formatos. </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <div class="bg-primary text-white p-4 rounded-3">
+                    <h4 class="mb-3"> Transforme Seu Conhecimento Hoje! </h4>
+                    <p class="mb-4"> Acesso ilimitado a centenas de cursos + atualizações semanais com novos conteúdos. 
+                    Aprenda o que quiser, quando quiser! </p>
+                    <a href="#pricing" class="btn btn-light"> Garantir Meu Acesso </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center section-title">Adquira Seu Acesso</h2>
+            <p class="text-center lead mb-5">Um único pagamento, acesso vitalício a todo conteúdo atual e futuro</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3 class="mb-0">Acesso Completo</h3>
+                        </div>
+                        <div class="p-4"><div class="text-center my-4">
+                            <div class="text-muted text-decoration-line-through small"> <span style="color: red;"> De: R$ 97,00 </span> </div>
+                                <span class="price">R$ 19,90</span>
+                                    <p class="text-muted mb-0">à vista</p>
+                                    <p class="text-muted small">ou parcele no cartão</p> </div>
+                            
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Acesso imediato após a compra</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Todo conteúdo atual</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Atualizações futuras inclusas</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Suporte direto no Telegram</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Múltiplos formatos de conteúdo</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Acesso vitalício</li>
+                            </ul>
+                            
+                            <div class="text-center mt-4">
+                                <button class="btn btn-checkout w-100" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+                                    Comprar Agora
+                                </button>
+                                <p class="text-muted mt-2 small">Pagamento seguro • Garantia de 7 dias</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5">
+        <div class="container py-5">
+            <h2 class="text-center section-title">O que nossos membros dizem</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Maria Silva" class="avatar me-3">
+                            <div>
+                                <h5 class="mb-0">Maria Silva</h5>
+                                <small class="text-muted">Há 3 meses no canal</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"O conteúdo é excelente e as atualizações constantes mantêm o canal sempre relevante. Vale cada centavo!"</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="João Santos" class="avatar me-3">
+                            <div>
+                                <h5 class="mb-0">João Santos</h5>
+                                <small class="text-muted">Há 6 meses no canal</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Comprei o acesso há alguns meses e já recebi várias atualizações. O suporte é rápido e a comunidade é muito ativa."</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana Costa" class="avatar me-3">
+                            <div>
+                                <h5 class="mb-0">Ana Costa</h5>
+                                <small class="text-muted">Há 1 mês no canal</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Acesso imediato após o pagamento. O conteúdo é bem organizado e as videoaulas são de alta qualidade."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center section-title">Perguntas Frequentes</h2>
+            
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Como recebo o acesso após a compra?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Imediatamente após a confirmação do pagamento, você receberá um e-mail com o link de convite para o canal no Telegram. O acesso é automático e instantâneo.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Quais formas de pagamento são aceitas?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Aceitamos cartão de crédito, débito e PIX. Todos os pagamentos são processados de forma segura.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            O conteúdo é atualizado regularmente?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Sim! Adicionamos novo conteúdo semanalmente. Como membro, você terá acesso a todas as atualizações futuras sem custo adicional.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Posso cancelar e receber reembolso?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Oferecemos garantia de 7 dias. Se você não ficar satisfeito com o conteúdo, basta nos enviar um e-mail que devolvemos seu dinheiro.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fab fa-telegram me-2"></i>Ofolheta</h5>
+                    <p>Acesso exclusivo a conteúdo premium através do Telegram. Aprenda com especialistas e faça parte de uma comunidade ativa.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-white text-decoration-none">Início</a></li>
+                        <li><a href="#benefits" class="text-white text-decoration-none">Vantagens</a></li>
+                        <li><a href="#content" class="text-white text-decoration-none">Conteúdo</a></li>
+                        <li><a href="#pricing" class="text-white text-decoration-none">Preço</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h5>Suporte</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#faqAccordion" class="text-white text-decoration-none">Perguntas Frequentes</a></li>
+                        <li><a href="#" class="text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#privacidadeModal">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#termosModal">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> contato@ofolheta.com</li>
+                    </ul>
+                    <div class="social-links">
+                    <a href="https://t.me/ofolheta" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://wa.me/5531995251154" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/ofolheta" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Ofolheta. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Checkout Modal -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> Finalizar Compra</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Resumo do Pedido</h6>
+                        <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                            <span>Acesso Vitalício</span>
+                            <span>R$ 19,90</span>
+                        </div>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total</span>
+                            <span>R$ 19,90</span>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h6>O que está incluído:</h6>
+                            <ul class="small">
+                                <li>Acesso imediato ao canal no Telegram</li>
+                                <li>Todo conteúdo atual e futuro</li>
+                                <li>Suporte direto 24/7</li>
+                                <li>Acesso permanente</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-light rounded mb-4">
+                            <h6 class="text-success">💡 Compra Simplificada!</h6>
+                            <p class="small mb-0">Você será direcionado para o Telegram para adquirir seu acesso</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label"> Seu Email</label>
+                            <input type="email" class="form-control" placeholder="Seu email para receber o acesso" id="customerEmail">
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                            <label class="form-check-label small" for="termsCheck">
+                                Concordo com os <a href="#" data-bs-toggle="modal" data-bs-target="#termosModal">termos e condições</a>
+                            </label>
+                        </div>
+                        
+                        <a href="#" class="btn btn-success w-100 py-3" id="telegramButton" target="_blank">
+                            <i class="fab fa-telegram me-2"></i>
+                            <strong>FINALIZAR COMPRA VIA TELEGRAM</strong>
+                        </a>
+                        
+                        <p class="text-center text-muted small mt-3">
+                            <i class="fas fa-lock me-1"></i>Pagamento seguro via PIX ou Cartão
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const telegramButton = document.getElementById('telegramButton');
+    const emailInput = document.getElementById('customerEmail');
+    const termsCheck = document.getElementById('termsCheck');
+    
+    telegramButton.addEventListener('click', function(e) {
+        // Previne o comportamento padrão primeiro
+        e.preventDefault();
+        
+        if (!termsCheck.checked) {
+            alert('Por favor, aceite os termos e condições antes de continuar.');
+            return;
+        }
+        
+        const email = emailInput.value.trim();
+        if (!email) {
+            alert('Por favor, informe seu email para receber o acesso.');
+            emailInput.focus();
+            return;
+        }
+        
+        if (!email.includes('@') || !email.includes('.')) {
+            alert('Por favor, informe um email válido.');
+            emailInput.focus();
+            return;
+        }
+        
+        // Monta a mensagem personalizada para o Telegram
+        const message = `Olá! Gostaria de comprar o acesso vitalício ao curso por R$ 19,90. Meu email é: ${email}`;
+        
+        // **ALTERE AQUI COM SEU USERNAME DO TELEGRAM**
+        const telegramURL = `https://t.me/andreezjn?text=${encodeURIComponent(message)}`;
+        
+        // Abre o Telegram em nova aba
+        window.open(telegramURL, '_blank');
+        
+        // Feedback para o usuário
+        alert('Você será direcionado para o Telegram! Continue o atendimento por lá.');
+        
+        // Fecha o modal após 1 segundo
+        setTimeout(() => {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
+            modal.hide();
+        }, 1000);
+    });
+});
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Main JavaScript - Simulando arquivo main.js
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll progress bar
+            window.onscroll = function() {
+                progressFunction();
+                scrollFunction();
+            };
+            
+            function progressFunction() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById("progressBar").style.width = scrolled + "%";
+            }
+            
+            // Back to top button
+            function scrollFunction() {
+                const backToTop = document.getElementById("backToTop");
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    backToTop.classList.add("active");
+                } else {
+                    backToTop.classList.remove("active");
+                }
+            }
+            
+            document.getElementById("backToTop").addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#pricing') {
+                        document.querySelector(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        return;
+                    }
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Animation on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.benefit-box, .pricing-card, .testimonial-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = 1;
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Initialize elements for animation
+            const animatedElements = document.querySelectorAll('.benefit-box, .pricing-card, .testimonial-card');
+            animatedElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(50px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            // Trigger once on load
+            animateOnScroll();
+            
+            // Simulate external JS files
+            console.log('Main JS loaded successfully');
+        });
+        
+        // Checkout JavaScript - Simulando arquivo checkout.js
+        const checkoutJS = function() {
+            // Simulação de validação de formulário
+            const checkoutForm = document.querySelector('#checkoutModal form');
+            if (checkoutForm) {
+                checkoutForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Aqui viria a integração com a API de pagamento
+                    alert('Pagamento processado com sucesso! Em instantes você receberá o acesso por email.');
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
+                    modal.hide();
+                });
+            }
+            
+            console.log('Checkout JS loaded successfully');
+        };
+        
+        // Animations JavaScript - Simulando arquivo animations.js
+        const animationsJS = function() {
+            // Animações adicionais
+            const animateFloatingElements = function() {
+                const floatingElements = document.querySelectorAll('.benefit-icon');
+                floatingElements.forEach((element, index) => {
+                    element.style.animationDelay = `${index * 0.2}s`;
+                });
+            };
+            
+            animateFloatingElements();
+            console.log('Animations JS loaded successfully');
+        };
+        
+        // Initialize all JavaScript when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            checkoutJS();
+            animationsJS();
+        });
+    </script>
+    <div class="modal fade" id="termosModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Termos e Condições</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1 - Acesso ao conteúdo</h6>
+                <p>O acesso ao canal no Telegram será liberado em até 24 horas após a confirmação do pagamento.</p>
+                
+                <h6>2 - Política de Reembolso</h6>
+                <p>Oferecemos garantia de 7 dias. Solicitações de reembolso devem ser feitas por email com justificativa.</p>
+                
+                <h6>3 - Uso do Conteúdo</h6>
+                <p>O conteúdo é para uso pessoal. É proibida a revenda, distribuição ou compartilhamento do acesso.</p>
+                
+                <h6>4 - Atualizações</h6>
+                <p>Novos conteúdos são adicionados regularmente, mas não há periodicidade fixa garantida.</p>
+                
+                <h6>5 - Suporte</h6>
+                <p>O suporte é realizado via Telegram em horário comercial com tempo médio de resposta de 24h.</p>
+                
+                <h6>6 - Cancelamento</h6>
+                <p>Por ser acesso vitalício, não há cancelamento ou reembolso após o período de garantia.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="privacidadeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Política de Privacidade</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1 - Dados Coletados</h6>
+                <p>Coletamos apenas email para envio do acesso e nome para identificação. Não armazenamos dados de pagamento.</p>
+                
+                <h6>2 - Uso dos Dados</h6>
+                <p>Seus dados são usados apenas para liberar seu acesso e enviar comunicações sobre o curso.</p>
+                
+                <h6>3 - Proteção</h6>
+                <p>Seus dados são protegidos e não compartilhados com terceiros.</p>
+                
+                <h6>4 - Cookies</h6>
+                <p>Utilizamos cookies apenas para melhorar a experiência de navegação no site.</p>
+                
+                <h6>5 - Seus Direitos</h6>
+                <p>Você pode solicitar a exclusão de seus dados a qualquer momento através do email de contato.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    document.addEventListener('show.bs.modal', function() {
+
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        if (backdrops.length > 0) {
+            backdrops.forEach(backdrop => backdrop.remove());
+        }
+    });
+    
+    document.addEventListener('hidden.bs.modal', function() {
+
+        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+    });
+});
+</script>
+</body>
+</html>
