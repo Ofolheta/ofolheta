@@ -847,22 +847,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-    <script>
-// Fechar menu ao clicar em um item (mobile)
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.nav-item .nav-link');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    
-    navLinks.forEach(function(navLink) {
-        navLink.addEventListener('click', function() {
-            if (navbarCollapse.classList.contains('show')) {
-                const toggler = document.querySelector('.navbar-toggler');
-                toggler.click(); // Fecha o menu
-            }
-        });
-    });
-});
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Main JavaScript - Simulando arquivo main.js
         document.addEventListener('DOMContentLoaded', function() {
@@ -1051,22 +1036,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </div>
-<script>
-// Fechar menu ao clicar em um item (mobile)
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.nav-item .nav-link');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    
-    navLinks.forEach(function(navLink) {
-        navLink.addEventListener('click', function() {
-            if (navbarCollapse.classList.contains('show')) {
-                const toggler = document.querySelector('.navbar-toggler');
-                toggler.click(); // Fecha o menu
-            }
-        });
-    });
-});
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1085,6 +1055,24 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('modal-open');
         document.body.style.overflow = '';
         document.body.style.paddingRight = '';
+    });
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Fechar menu mobile ao clicar em um item
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Fechar menu ao clicar nos links
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarCollapse.classList.contains('show')) {
+                navbarToggler.click();
+            }
+        });
     });
 });
 </script>
