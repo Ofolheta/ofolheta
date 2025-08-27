@@ -563,28 +563,23 @@
         <p class="text-muted mb-0">à vista</p>
         <p class="text-muted small">ou parcele no cartão</p>
     </div>
+    
+    <ul class="list-unstyled">
+        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Acesso imediato após a compra</li>
+        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Todo conteúdo atual</li>
+        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Atualizações futuras inclusas</li>
+        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Suporte direto no Telegram</li>
+        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Múltiplos formatos de conteúdo</li>
+        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Acesso vitalício</li>
+    </ul>
+    
+    <div class="text-center mt-4">
+        <button class="btn btn-checkout w-100" data-bs-toggle="modal" data-bs-target="#checkoutModal" style="border-radius: 50px;">
+            Comprar Agora
+        </button>
+        <p class="text-muted mt-2 small">Pagamento seguro • Garantia de 7 dias</p>
+    </div>
 </div>
-                            
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Acesso imediato após a compra</li>
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Todo conteúdo atual</li>
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Atualizações futuras inclusas</li>
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Suporte direto no Telegram</li>
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Múltiplos formatos de conteúdo</li>
-                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Acesso vitalício</li>
-                            </ul>
-                            
-                            <div class="text-center mt-4">
-                                <button class="btn btn-checkout w-100" data-bs-toggle="modal" data-bs-target="#checkoutModal">
-                                    Comprar Agora
-                                </button>
-                                <p class="text-muted mt-2 small">Pagamento seguro • Garantia de 7 dias</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Testimonials Section -->
@@ -740,117 +735,199 @@
     </footer>
 
     <!-- Checkout Modal -->
-<div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"> Finalizar Compra</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h6>Resumo do Pedido</h6>
-                        <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
-                            <span>Acesso Vitalício</span>
-                            <span>R$ 19,90</span>
+ <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> Finalizar Compra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Resumo do Pedido</h6>
+                            <div class="d-flex justify-content-between border-bottom pb-2 mb-2">
+                                <span>Acesso Vitalício</span>
+                                <span>R$ 19,90</span>
+                            </div>
+                            <div class="d-flex justify-content-between fw-bold">
+                                <span>Total</span>
+                                <span>R$ 19,90</span>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h6>O que está incluído:</h6>
+                                <ul class="small">
+                                    <li>Acesso imediato ao canal no Telegram</li>
+                                    <li>Todo conteúdo atual e futuro</li>
+                                    <li>Suporte direto 24/7</li>
+                                    <li>Acesso permanente</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-between fw-bold">
-                            <span>Total</span>
-                            <span>R$ 19,90</span>
+                        <div class="col-md-6">
+                            <div class="text-center p-3 bg-light rounded mb-4">
+                                <h6 class="text-success">💡 Compra Segura!</h6>
+                                <p class="small mb-0">Pagamento processado pelo Mercado Pago</p>
+                            </div>
+                            
+                            <div class="mb-3">
+                                    <label class="form-label">Seu Email</label>
+                                    <input type="email" class="form-control" placeholder="Seu email para receber o acesso" id="customerEmail"> </div>
+                                    
+                                <script> async function salvarEmail(email) {
+                                        try {
+                                            const response = await fetch('https://suaapi.com/salvar-email', {
+                                                method: 'POST', headers: {
+                                                    'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ email: email })
+                                                });
+                                                
+                                                return await response.json();
+                                                } catch (error) {
+                                                            console.error('Erro:', error);
+                                                            return { success: false, error: 'Falha na conexão' }; }
+                                                        }
+
+document.getElementById('mercadoPagoButton').addEventListener('click', async function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('customerEmail').value;
+    
+    // Salva o email no banco
+    const resultado = await salvarEmail(email);
+    
+    if(resultado.success) {
+        // Redireciona para o pagamento
+        window.open('https://mpago.li/2Rtn27e', '_blank');
+    } else {
+        alert('Erro ao salvar email: ' + resultado.error);
+    }
+});
+</script>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                <label class="form-check-label small" for="termsCheck">
+                                    Concordo com os <a href="#" data-bs-toggle="modal" data-bs-target="#termosModal">termos e condições</a>
+                                </label>
+                            </div>
+                            
+                            <!-- BOTÃO DO MERCADO PAGO (LINK DIRETO) -->
+                            <a href="https://mpago.li/2Rtn27e" class="btn btn-success w-100 py-3" id="mercadoPagoButton" target="_blank">
+                                <i class="fas fa-shopping-cart me-2"></i>
+                                <strong>FINALIZAR COMPRA</strong>
+                            </a>
+                            
+                            <p class="text-center text-muted small mt-3">
+                                <i class="fas fa-lock me-1"></i>Pagamento seguro via Mercado Pago
+                            </p>
                         </div>
-                        
-                        <div class="mt-4">
-                            <h6>O que está incluído:</h6>
-                            <ul class="small">
-                                <li>Acesso imediato ao canal no Telegram</li>
-                                <li>Todo conteúdo atual e futuro</li>
-                                <li>Suporte direto 24/7</li>
-                                <li>Acesso permanente</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="text-center p-3 bg-light rounded mb-4">
-                            <h6 class="text-success">💡 Compra Simplificada!</h6>
-                            <p class="small mb-0">Você será direcionado para o Telegram para adquirir seu acesso</p>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label"> Seu Email</label>
-                            <input type="email" class="form-control" placeholder="Seu email para receber o acesso" id="customerEmail">
-                        </div>
-                        
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
-                            <label class="form-check-label small" for="termsCheck">
-                                Concordo com os <a href="#" data-bs-toggle="modal" data-bs-target="#termosModal">termos e condições</a>
-                            </label>
-                        </div>
-                        
-                        <a href="#" class="btn btn-success w-100 py-3" id="telegramButton" target="_blank">
-                            <i class="fab fa-telegram me-2"></i>
-                            <strong>FINALIZAR COMPRA VIA TELEGRAM</strong>
-                        </a>
-                        
-                        <p class="text-center text-muted small mt-3">
-                            <i class="fas fa-lock me-1"></i>Pagamento seguro via PIX ou Cartão
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const telegramButton = document.getElementById('telegramButton');
-    const emailInput = document.getElementById('customerEmail');
-    const termsCheck = document.getElementById('termsCheck');
-    
-    telegramButton.addEventListener('click', function(e) {
-        // Previne o comportamento padrão primeiro
-        e.preventDefault();
-        
-        if (!termsCheck.checked) {
-            alert('Por favor, aceite os termos e condições antes de continuar.');
-            return;
-        }
-        
-        const email = emailInput.value.trim();
-        if (!email) {
-            alert('Por favor, informe seu email para receber o acesso.');
-            emailInput.focus();
-            return;
-        }
-        
-        if (!email.includes('@') || !email.includes('.')) {
-            alert('Por favor, informe um email válido.');
-            emailInput.focus();
-            return;
-        }
-        
-        // Monta a mensagem personalizada para o Telegram
-        const message = `Olá! Gostaria de comprar o acesso vitalício ao curso por R$ 19,90. Meu email é: ${email}`;
-        
-        // **ALTERE AQUI COM SEU USERNAME DO TELEGRAM**
-        const telegramURL = `https://t.me/andreezjn?text=${encodeURIComponent(message)}`;
-        
-        // Abre o Telegram em nova aba
-        window.open(telegramURL, '_blank');
-        
-        // Feedback para o usuário
-        alert('Você será direcionado para o Telegram! Continue o atendimento por lá.');
-        
-        // Fecha o modal após 1 segundo
-        setTimeout(() => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
-            modal.hide();
-        }, 1000);
-    });
-});
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Main JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll progress bar
+            window.onscroll = function() {
+                progressFunction();
+                scrollFunction();
+            };
+            
+            function progressFunction() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.getElementById("progressBar").style.width = scrolled + "%";
+            }
+            
+            // Back to top button
+            function scrollFunction() {
+                const backToTop = document.getElementById("backToTop");
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    backToTop.classList.add("active");
+                } else {
+                    backToTop.classList.remove("active");
+                }
+            }
+            
+            document.getElementById("backToTop").addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#pricing') {
+                        document.querySelector(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        return;
+                    }
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Animation on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.benefit-box, .pricing-card, .testimonial-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = 1;
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Initialize elements for animation
+            const animatedElements = document.querySelectorAll('.benefit-box, .pricing-card, .testimonial-card');
+            animatedElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(50px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            // Trigger once on load
+            animateOnScroll();
+            
+            // Fechar menu mobile ao clicar nos links
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarToggler.click();
+                    }
+                });
+            });
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -1095,6 +1172,50 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+});
+</script>
+<script>
+async function salvarEmail(email) {
+    try {
+        const response = await fetch('http://localhost:3000/salvar-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email })
+        });
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Erro:', error);
+        return { success: false, error: 'Falha na conexão' };
+    }
+}
+
+// No clique do botão do Mercado Pago
+document.getElementById('mercadoPagoButton').addEventListener('click', async function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('customerEmail').value;
+    
+    if (!email || !email.includes('@')) {
+        alert('Por favor, digite um e-mail válido!');
+        return;
+    }
+    
+    // Primeiro salva o email, depois redireciona
+    const resultado = await salvarEmail(email);
+    
+    if(resultado.success) {
+        // Redireciona para o pagamento
+        window.open('https://mpago.li/2Rtn27e', '_blank');
+        
+        // Fecha o modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
+        modal.hide();
+    } else {
+        alert('Erro: ' + resultado.error);
+    }
 });
 </script>
 </body>
