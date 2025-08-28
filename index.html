@@ -1173,49 +1173,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-<script>
-async function salvarEmail(email) {
-    try {
-        const response = await fetch('http://localhost:3000/salvar-email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email: email })
-        });
-        
-        return await response.json();
-    } catch (error) {
-        console.error('Erro:', error);
-        return { success: false, error: 'Falha na conexão' };
-    }
-}
-
-// No clique do botão do Mercado Pago
-document.getElementById('mercadoPagoButton').addEventListener('click', async function(e) {
-    e.preventDefault();
-    
-    const email = document.getElementById('customerEmail').value;
-    
-    if (!email || !email.includes('@')) {
-        alert('Por favor, digite um e-mail válido!');
-        return;
-    }
-    
-    // Primeiro salva o email, depois redireciona
-    const resultado = await salvarEmail(email);
-    
-    if(resultado.success) {
-        // Redireciona para o pagamento
-        window.open('https://mpago.li/2Rtn27e', '_blank');
-        
-        // Fecha o modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
-        modal.hide();
-    } else {
-        alert('Erro: ' + resultado.error);
-    }
-});
-</script>
 </body>
 </html>
