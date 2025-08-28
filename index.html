@@ -789,20 +789,60 @@
                                                             return { success: false, error: 'Falha na conexão' }; }
                                                         }
 
-document.getElementById('mercadoPagoButton').addEventListener('click', async function(e) {
-    e.preventDefault();
+// Adiciona o event listener quando o modal é aberto
+document.getElementById('checkoutModal').addEventListener('shown.bs.modal', function() {
+    const mercadoPagoButton = document.getElementById('mercadoPagoButton');
+    const customerEmail = document.getElementById('customerEmail');
+    const termsCheck = document.getElementById('termsCheck');
     
-    const email = document.getElementById('customerEmail').value;
-    
-    // Salva o email no banco
-    const resultado = await salvarEmail(email);
-    
-    if(resultado.success) {
-        // Redireciona para o pagamento
-        window.open('https://mpago.li/2Rtn27e', '_blank');
-    } else {
-        alert('Erro ao salvar email: ' + resultado.error);
-    }
+    mercadoPagoButton.addEventListener('click', async function(e) {
+        e.preventDefault();
+        
+        const email = customerEmail.value;
+        const termosAceitos = termsCheck.checked;
+        
+        // Validações
+        if (!email || !email.includes('@')) {
+            alert('Por favor, digite um e-mail válido!');
+            return;
+        }
+        
+        if (!termosAceitos) {
+            alert('Você precisa aceitar os termos e condições!');
+            return;
+        }
+        
+        // Mostrar loading
+        const originalText = mercadoPagoButton.innerHTML;
+        mercadoPagoButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processando...';
+        mercadoPagoButton.disabled = true;
+        
+        try {
+            // Salva o email
+            const resultado = await salvarEmail(email);
+            
+            if(resultado.success) {
+                // Abre Mercado Pago
+                window.open('https://mpago.li/2Rtn27e', '_blank');
+                
+                // Fecha o modal após 1 segundo
+                setTimeout(() => {
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
+                    modal.hide();
+                }, 1000);
+                
+            } else {
+                alert('Erro: ' + resultado.error);
+            }
+        } catch (error) {
+            console.error('Erro inesperado:', error);
+            alert('Erro inesperado. Tente novamente.');
+        } finally {
+            // Restaura botão
+            mercadoPagoButton.innerHTML = originalText;
+            mercadoPagoButton.disabled = false;
+        }
+    });
 });
 </script>
                             <div class="form-check mb-3">
