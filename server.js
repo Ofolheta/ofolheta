@@ -104,3 +104,22 @@ app.listen(PORT, () => {
   console.log('📦 Supabase URL:', supabaseUrl);
   console.log('🔗 Health check: http://localhost:' + PORT + '/health');
 });
+
+app.get('/test-insert', async (req, res) => {
+  try {
+    console.log('Testando inserção...');
+    const { data, error } = await supabase
+      .from('leads')
+      .insert([{ email: 'teste_direct@email.com', status: 'TEST' }])
+      .select();
+    
+    if (error) {
+      console.error('Erro na inserção:', error);
+      return res.status(500).json({ error: error.message });
+    }
+    
+    res.json({ success: true, data: data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
