@@ -823,10 +823,35 @@ document.addEventListener('DOMContentLoaded', function() {
             // Salva o email
             const resultado = await salvarEmail(email);
             
-            if(resultado.success) {
-                // Abre Mercado Pago
-                window.open('https://mpago.li/2Rtn27e', '_blank');
-                
+// Dentro do seu evento de clique do botão Mercado Pago:
+if(resultado.success) {
+    // SOLUÇÃO: Abre o Mercado Pago de um jeito que não é bloqueado
+    const abrirMercadoPago = () => {
+        // Tenta a abordagem mais moderna primeiro
+        const novaJanela = window.open('', '_blank', 'noopener,noreferrer');
+        if (novaJanela) {
+            novaJanela.opener = null; // Importante para segurança
+            novaJanela.location.href = 'https://mpago.li/2Rtn27e';
+        } else {
+            // Fallback para o método do link se falhar
+            const link = document.createElement('a');
+            link.href = 'https://mpago.li/2Rtn27e';
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    };
+
+    // Executa a abertura
+    abrirMercadoPago();
+
+    // Fecha o modal após 1 segundo
+    setTimeout(() => {
+        const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
+        modal.hide();
+    }, 1000);
                 // Fecha o modal após 1 segundo
                 setTimeout(() => {
                     const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
