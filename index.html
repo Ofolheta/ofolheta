@@ -768,7 +768,7 @@
                         <div class="col-md-6">
                             <div class="text-center p-3 bg-light rounded mb-4">
                                 <h6 class="text-success">💡 Compra Segura!</h6>
-                                <p class="small mb-0">Pagamento processado pelo Mercado Pago</p>
+                                <p class="small mb-0">Pagamento processado pela Cakto</p>
                             </div>
                             
                             <div class="mb-3">
@@ -792,12 +792,12 @@ async function salvarEmail(email) {
 
 // *** MUDANÇA PRINCIPAL: Adiciona o event listener UMA ÚNICA VEZ, fora do evento do modal ***
 document.addEventListener('DOMContentLoaded', function() {
-    const mercadoPagoButton = document.getElementById('mercadoPagoButton');
+    const caktoButton = document.getElementById('caktoButton');
     const customerEmail = document.getElementById('customerEmail');
     const termsCheck = document.getElementById('termsCheck');
     
     // Adiciona o listener uma única vez quando a página carrega
-    mercadoPagoButton.addEventListener('click', async function(e) {
+    caktoButton.addEventListener('click', async function(e) {
         e.preventDefault();
         
         const email = customerEmail.value;
@@ -815,18 +815,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Mostrar loading
-        const originalText = mercadoPagoButton.innerHTML;
-        mercadoPagoButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processando...';
-        mercadoPagoButton.disabled = true;
+        const originalText = caktoButton.innerHTML;
+        caktoButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processando...';
+        caktoButton.disabled = true;
         
         try {
             // Salva o email
             const resultado = await salvarEmail(email);
             
-// Dentro do seu evento de clique do botão Mercado Pago:
+// Dentro do seu evento de clique do botão CAKTO:
 if(resultado.success) {
     // ✅ SOLUÇÃO SIMPLES E EFETIVA - Redirecionamento direto
-    window.location.href = 'https://mpago.li/2Rtn27e';
+    window.location.href = 'https://pay.cakto.com.br/75Yc2H8';
 
     // Fecha o modal após 1 segundo
     setTimeout(() => {
@@ -847,8 +847,8 @@ if(resultado.success) {
             alert('Erro inesperado. Tente novamente.');
         } finally {
             // Restaura botão
-            mercadoPagoButton.innerHTML = originalText;
-            mercadoPagoButton.disabled = false;
+            caktoButton.innerHTML = originalText;
+            caktoButton.disabled = false;
         }
     });
 });
@@ -860,14 +860,14 @@ if(resultado.success) {
                                 </label>
                             </div>
                             
-                            <!-- BOTÃO DO MERCADO PAGO (LINK DIRETO) -->
-                            <a href="https://mpago.li/2Rtn27e" class="btn btn-success w-100 py-3" id="mercadoPagoButton" target="_blank">
+                            <!-- BOTÃO DA CAKTO (LINK DIRETO) -->
+                            <a href="https://pay.cakto.com.br/75Yc2H8" class="btn btn-success w-100 py-3" id="caktoButton" target="_blank">
                                 <i class="fas fa-shopping-cart me-2"></i>
                                 <strong>FINALIZAR COMPRA</strong>
                             </a>
                             
                             <p class="text-center text-muted small mt-3">
-                                <i class="fas fa-lock me-1"></i>Pagamento seguro via Mercado Pago
+                                <i class="fas fa-lock me-1"></i>Pagamento seguro via Cakto
                             </p>
                         </div>
                     </div>
