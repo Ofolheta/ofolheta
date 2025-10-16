@@ -1155,5 +1155,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script>
+  document.getElementById('caktoButton').addEventListener('click', function() {
+    fbq('track', 'Purchase', {
+      value: 19.90,
+      currency: 'BRL'
+    });
+  });
+</script>
+
 </body>
 </html>
