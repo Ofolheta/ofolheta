@@ -372,6 +372,9 @@
             .benefit-box {
                 margin-bottom: 20px;
             }
+            body, .hero-section, .nav-link, .section-title, .course-card, .pricing-card, .testimonial-card {
+                cursor: default;
+            }
         }
     </style>
 </head>
@@ -933,8 +936,8 @@
                 if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                     backToTop.classList.add("active");
                 } else {
-                    backToTop.classList.remove("active");
-                }
+                    backToTop.classList.remove("active");fz
+                } 
             }
             
             document.getElementById("backToTop").addEventListener('click', function(e) {
@@ -1166,4 +1169,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
-
